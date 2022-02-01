@@ -1,27 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 public class ErrorMessage : MonoBehaviour
 {
-    public RectTransform errorUI;
-    public Button ReturnMenu;
+    public RectTransform ErrorUI;
+    public Button ReturnMenuButton;
 
     void Start()
     {
-        ReturnMenu = errorUI.GetComponentInChildren<Button>();
-        ReturnMenu.onClick.AddListener(Click);
+        ReturnMenuButton = ErrorUI.GetComponentInChildren<Button>();
+        ReturnMenuButton.onClick.AddListener(Button);
     }
 
 
-    void Click()
+    void Button()
     {
-        errorUI.gameObject.SetActive(false);
+        ErrorUI.gameObject.SetActive(false);
 
     }
 
-    public void ShowErrorMessage(string errorMessage)
+    public void DisplayMessage(string errorMessage)
     {
-        Text errorMessageText = errorUI.GetComponentInChildren<Text>();
+        Text errorMessageText = ErrorUI.GetComponentInChildren<Text>();
         errorMessageText.text = errorMessage;
-        errorUI.gameObject.SetActive(true);
+        ErrorUI.gameObject.SetActive(true);
     }
 }

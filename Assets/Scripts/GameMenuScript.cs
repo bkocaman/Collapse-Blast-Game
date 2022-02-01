@@ -9,35 +9,33 @@ public class GameMenuScript : MonoBehaviour
     public RectTransform errorUI;
     public Button StartUI;
     private ErrorMessage errorMessageScript;
-    
 
-    // Created Array
-    int[] propertiesArray = new int[6];
-    string[] componentNames = { "Row", "Column", "Color", "A", "B", "C" };
+    int[] Array = new int[6];
+    string[] componentNames = { "RowText", "ColumnText", "ColorText", "AText", "BText", "CText" };
     int[] lowerLimits = { 2, 2, 1, 0, 0, 0 };
-    int[] higherLimits = { 10, 10, 6, 20, 20, 20 };
+    int[] higherLimits = { 10, 10, 6, 50, 50, 50 };
     int Row = 0, Column = 1, Color = 2, A = 3, B = 4, C = 5;
 
 
     void Start()
     {
-        Button button = StartUI.GetComponent<Button>();
-        button.onClick.AddListener(Click);
-
+        Button btn = StartUI.GetComponent<Button>();
+        btn.onClick.AddListener(Button);
         GameObject go = errorUI.gameObject;
         errorMessageScript = errorUI.GetComponentInChildren<ErrorMessage>();
-       
+
+
     }
+
 
     string GetInputFieldText(string componentName)
     {
-        GameObject input = GameObject.Find(componentName);
-        InputField inputfield = input.GetComponent<InputField>();
-        return inputfield.text;
+        GameObject inputFieldGo = GameObject.Find(componentName);
+        InputField inputFieldCo = inputFieldGo.GetComponent<InputField>();
+        return inputFieldCo.text;
     }
 
 
-    //Checking input method
 
     bool CheckingInput(string componentName, ref int value, int lowerLimit, int higherLimit, string errorMessage)
     {
@@ -51,29 +49,28 @@ public class GameMenuScript : MonoBehaviour
             }
             else
             {
-                errorMessageScript.ShowErrorMessage(errorMessage);
+                errorMessageScript.DisplayMessage(errorMessage);
             }
         }
         else
         {
-            errorMessageScript.ShowErrorMessage("-------------ERROR !!! -------------");
-            errorMessageScript.ShowErrorMessage( componentName + " entered wrong number !!");
+            errorMessageScript.DisplayMessage("ERROR !!" + componentName + "Number is wrong");
         }
         return result;
     }
 
-    void Click()
+    void Button()
     {
         bool iscorrect = false;
-        for (int valueIndex = 0; valueIndex < propertiesArray.Length; valueIndex++)
+        for (int valueIndex = 0; valueIndex < Array.Length; valueIndex++)
         {
 
-            int lowLimit = lowerLimits[valueIndex];
-            int highLimit = higherLimits[valueIndex];
+            int lowlimit = lowerLimits[valueIndex];
+            int highlimit = higherLimits[valueIndex];
             string name = componentNames[valueIndex];
 
-            iscorrect = CheckingInput(name, ref propertiesArray[valueIndex], lowLimit, highLimit,
-              "ERROR !!!" +  name + " number should be between " + lowLimit + " - " + highLimit );
+            iscorrect = CheckingInput(name, ref Array[valueIndex], lowlimit, highlimit,
+               name + " number must be" + lowlimit + " to " + highlimit );
 
             if (!iscorrect)
             {
@@ -81,27 +78,29 @@ public class GameMenuScript : MonoBehaviour
             }
             else if (valueIndex == A)
             {
-                lowerLimits[B] = propertiesArray[A] + 1;
+                lowerLimits[B] = Array[A] + 1;
                 Debug.Log(lowerLimits[B]);
             }
             else if (valueIndex == B)
             {
-                lowerLimits[C] = propertiesArray[B] + 1;
+                lowerLimits[C] = Array[B] + 1;
             }
         }
         if (iscorrect)
         {
-            PlayerPrefs.SetInt("row", propertiesArray[Row]);
-            PlayerPrefs.SetInt("column", propertiesArray[Column]);
-            PlayerPrefs.SetInt("color", propertiesArray[Color]);
-            PlayerPrefs.SetInt("A", propertiesArray[A]);
-            PlayerPrefs.SetInt("B", propertiesArray[B]);
-            PlayerPrefs.SetInt("C", propertiesArray[C]);
+            PlayerPrefs.SetInt("row", Array[Row]);
+            PlayerPrefs.SetInt("column", Array[Column]);
+            PlayerPrefs.SetInt("color", Array[Color]);
+            PlayerPrefs.SetInt("A", Array[A]);
+            PlayerPrefs.SetInt("B", Array[B]);
+            PlayerPrefs.SetInt("C", Array[C]);
 
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("");
         }
 
     }
+
+
 
 
 
