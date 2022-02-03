@@ -33,9 +33,9 @@ namespace ItemColors
             return _material;
         }
         
-        public bool IsThisLevel(int blockNumber) 
+        public bool IsThisLevel(int itemNumber) 
         {
-            bool isThisLevel = _startValue <= blockNumber && blockNumber <= _endValue;
+            bool isThisLevel = _startValue <= itemNumber && itemNumber <= _endValue;
             return isThisLevel;
         }
 

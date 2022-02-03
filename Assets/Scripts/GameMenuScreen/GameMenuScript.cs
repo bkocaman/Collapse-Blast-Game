@@ -95,7 +95,7 @@ public class GameMenuScript : MonoBehaviour
             PlayerPrefs.SetInt("B", Array[B]);
             PlayerPrefs.SetInt("C", Array[C]);
 
-            SceneManager.LoadScene("");
+            SceneManager.LoadScene("Game");
         }
 
     }
