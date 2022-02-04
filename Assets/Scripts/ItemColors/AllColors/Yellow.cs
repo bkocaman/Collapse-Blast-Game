@@ -12,7 +12,7 @@ namespace ItemColors
         public Yellow(ArrayList levelBoundaries)
         {
             this.initialMaterials = new ArrayList{ 
-                Resources.Load<Material>("Materials/Yellow_D"), 
+                Resources.Load<Material>("Materials/Yellow_Default"), 
                 Resources.Load<Material>("Materials/Yellow_A"),
                 Resources.Load<Material>("Materials/Yellow_B"),
                 Resources.Load<Material>("Materials/Yellow_C"),

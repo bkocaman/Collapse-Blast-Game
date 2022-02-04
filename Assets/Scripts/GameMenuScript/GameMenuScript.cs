@@ -70,7 +70,7 @@ public class GameMenuScript : MonoBehaviour
             string name = componentNames[valueIndex];
 
             iscorrect = CheckingInput(name, ref Array[valueIndex], lowlimit, highlimit,
-               name + " number must be" + lowlimit + " to " + highlimit );
+               name + " number must be" + lowlimit + " to " + highlimit);
 
             if (!iscorrect)
             {

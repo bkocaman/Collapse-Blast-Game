@@ -15,5 +15,5 @@ MonoBehaviour:
   ColumnLength: 0.85
   RowLength: 0.85
   ZValue: 5
-  BlockSpeed: 12
-  NewBlockEmergingPointYCoordinate: 10
+  itemSpeed: 8
+  NewItemPointY: 8

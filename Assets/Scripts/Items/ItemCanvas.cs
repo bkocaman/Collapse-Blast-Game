@@ -6,7 +6,7 @@ namespace Items
 {
     public class ItemCanvas : MonoBehaviour
     {
-        
+        private ItemManager _itemManager;
         public GameObject itemManager; 
         private Items.Item [,] _item;
         private int _rowNumber;
@@ -15,7 +15,7 @@ namespace Items
         private System.Random _random;
 
         void Awake() {
-        
+            _itemManager = (ItemManager) itemManager.GetComponent("ItemManager");
             _random = new System.Random();
             _order = 0;
             _rowNumber = 0;
@@ -152,7 +152,7 @@ namespace Items
             for(int row = 0; row < _rowNumber; row++) {         
                 for(int column = 0; column < _columnNumber; column++) {     
                     if(_item[row, column] == null) {
-                    
+                        _itemManager.CreateItemIntoCanvas(row, column);
                     }
                 } 
             }
@@ -191,7 +191,7 @@ namespace Items
 
         public void ResetCanvas() {
             DestroyAllItems();
-       
+            _itemManager.CreateCanvas();
         }
 
         private void DestroyAllItems() {

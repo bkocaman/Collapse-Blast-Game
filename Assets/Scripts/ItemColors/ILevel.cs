@@ -7,7 +7,7 @@ namespace ItemColors
 {
     public interface ILevel
     {
-        bool IsThisLevel(int itemNumber);
+        bool IsThisLevel(int blockNumber);
         Material GetMaterial();
 
         void SetLevelBoundary(int startValue, int endValue);
